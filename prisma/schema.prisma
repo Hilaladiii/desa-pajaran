@@ -1,0 +1,30 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model News{
+  id String @id @default(uuid())
+  image String
+  content String @db.Text()  
+  createdAt DateTime @default(now())    
+}
+
+model Anouncement{
+  id String @id @default(uuid())
+  image String
+  content String @db.Text()
+  createdAt DateTime @default(now())
+}
+
+model Activity{
+  id String @id @default(uuid())
+  image String
+  content String @db.Text()
+  createdAt DateTime @default(now())
+}
+
