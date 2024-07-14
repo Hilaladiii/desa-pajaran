@@ -66,6 +66,33 @@ export async function getNews() {
   }
 }
 
+export async function getNewsById(id: string) {
+  try {
+    const res = await prisma.news.findUnique({
+      where: {
+        id,
+      },
+    });
+    if (!res) {
+      return {
+        status: 404,
+        message: "news not found",
+        data: null,
+      };
+    }
+    return {
+      status: 200,
+      message: "succes get news by id",
+      data: res,
+    };
+  } catch (error) {
+    return {
+      status: 500,
+      message: (error as Error).message,
+    };
+  }
+}
+
 export async function updateNews(data: TNews) {
   try {
     let imageUrl: string | undefined;
